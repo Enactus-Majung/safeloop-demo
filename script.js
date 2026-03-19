@@ -1,23 +1,37 @@
 const data = {
   phone: "01012345678",
-  status: "missing" // normal / missing
+  status: "missing" // 기본 상태
 };
 
-// 📞 전화 연결
-document.getElementById("callBtn").href = `tel:${data.phone}`;
-
-// 🔴 상태 표시
+const callBtn = document.getElementById("callBtn");
 const statusText = document.getElementById("statusText");
-const toggle = document.querySelector(".toggle");
+const toggle = document.getElementById("toggle");
 
-if (data.status === "missing") {
-  statusText.innerText = "🔴 현재, 실종 신고가 접수된 어르신입니다.";
-  statusText.style.display = "inline";   // 보이기
-  toggle.classList.add("active");
-} else {
-  statusText.style.display = "none";     // 🔥 완전히 숨김
-  toggle.classList.remove("active");
+// 📞 전화 연결
+callBtn.href = `tel:${data.phone}`;
+
+// 🔄 상태 반영 함수
+function updateUI() {
+  if (data.status === "missing") {
+    statusText.innerText = "🔴 현재, 실종 신고가 접수된 어르신입니다.";
+    statusText.style.display = "inline";
+    toggle.classList.add("active");
+  } else {
+    statusText.style.display = "none";
+    toggle.classList.remove("active");
+  }
 }
 
-// 👤 페이지 이동
-document.getElementById("infoBtn").href = "user.html";
+// 👉 초기 상태 적용
+updateUI();
+
+// 🔥 👉 클릭하면 상태 변경
+toggle.addEventListener("click", () => {
+  if (data.status === "missing") {
+    data.status = "normal";
+  } else {
+    data.status = "missing";
+  }
+
+  updateUI();
+});

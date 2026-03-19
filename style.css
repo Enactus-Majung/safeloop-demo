@@ -110,3 +110,25 @@ body {
 .small {
   margin: 3px 0;
 }
+
+/* 🔴 스위치 ON 상태 */
+.toggle.active {
+  background: #b5483a;
+}
+
+.toggle.active::after {
+  left: 20px;
+}
+
+/* 🔥 화면 고정 컨테이너 */
+body {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 390px;
+  min-height: 100vh;
+  background: #f3f4f6;
+  padding: 20px;
+}

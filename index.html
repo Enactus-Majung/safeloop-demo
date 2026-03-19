@@ -1,30 +1,25 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <title>마중 NFC</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
 <div id="missingBanner" class="hidden">
-  ⛔ 현재, 실종 신고가 접수된 어르신입니다 ⛔
+  🔴 현재, 실종 신고가 접수된 어르신입니다.
 </div>
 
-<h1>🚨 도움이 필요한 어르신입니다</h1>
-<p>안전하게 귀가할 수 있도록 도와주세요.</p>
+<div class="card">
+  <h2>🚨</h2>
+  <h3>도움이 필요한 어르신입니다.</h3>
+  <p>안전하게 귀가할 수 있도록 도와주세요.</p>
+</div>
 
-<a id="callBtn" class="btn">📞 보호자 연결</a>
-<a href="tel:182" class="btn">실종신고 182</a>
-<a href="tel:112" class="btn">경찰 연결 112</a>
+<p>📞 아래 버튼을 누르면 바로 전화가 연결됩니다.</p>
 
-<p class="guide">
-“안심밴드를 통해 연락드립니다.<br>
-OOO 장소에서 어르신을 발견했습니다.”
-</p>
+<div class="btn-group">
+  <a id="callBtn" class="btn red">보호자 연결</a>
+  <a href="tel:182" class="btn orange">실종신고 182</a>
+  <a href="tel:112" class="btn blue">경찰연결 112</a>
+</div>
 
-<a id="infoBtn" class="btn secondary">어르신 정보 확인하기</a>
+<div class="guide-box">
+  <b>이렇게 말씀해 주세요!</b><br><br>
+  “안심밴드를 통해 연락드립니다.<br>
+  OOO 장소에서 어르신을 발견했습니다.”
+</div>
 
-<script src="script.js"></script>
-</body>
-</html>
+<a id="infoBtn" class="info-link">👤 어르신 정보 확인하기</a>

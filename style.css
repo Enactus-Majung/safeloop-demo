@@ -1,8 +1,25 @@
+/* 전체 */
 body {
   margin: 0;
   font-family: 'Apple SD Gothic Neo', sans-serif;
+  background: #e5e5e5;
+
+  /* 🔥 중앙 정렬 (앱처럼 보이게) */
+  display: flex;
+  justify-content: center;
+}
+
+/* 🔥 앱 컨테이너 */
+.container {
+  width: 390px;
+  min-height: 100vh;
   background: #f3f4f6;
   padding: 20px;
+  box-sizing: border-box;
+
+  /* 👉 앱 느낌 */
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  border-radius: 20px;
 }
 
 /* 상단 */
@@ -13,12 +30,14 @@ body {
   margin-bottom: 15px;
 }
 
+/* 스위치 */
 .toggle {
   width: 40px;
   height: 22px;
   background: #ccc;
   border-radius: 20px;
   position: relative;
+  transition: 0.2s;
 }
 
 .toggle::after {
@@ -30,10 +49,22 @@ body {
   top: 2px;
   left: 2px;
   border-radius: 50%;
+  transition: 0.2s;
 }
 
+/* 🔴 스위치 ON */
+.toggle.active {
+  background: #b5483a;
+}
+
+.toggle.active::after {
+  left: 20px;
+}
+
+/* 상태 텍스트 */
 #statusText {
   font-size: 13px;
+  display: none; /* 🔥 기본 숨김 */
 }
 
 /* 메인 카드 */
@@ -55,12 +86,14 @@ body {
   text-align: center;
   margin: 20px 0;
   color: #444;
+  font-size: 14px;
 }
 
 /* 버튼 */
 .btn-group {
   display: flex;
   gap: 10px;
+  margin-top: 10px;
 }
 
 .btn {
@@ -71,8 +104,10 @@ body {
   color: white;
   text-decoration: none;
   font-weight: bold;
+  font-size: 14px;
 }
 
+/* 버튼 색상 */
 .red { background: #b5483a; }
 .orange { background: #f4a62a; }
 .blue { background: #3b6cc4; }
@@ -84,6 +119,7 @@ body {
   border-radius: 12px;
   margin-top: 20px;
   font-size: 14px;
+  line-height: 1.5;
 }
 
 /* 정보 버튼 */
@@ -93,6 +129,7 @@ body {
   margin: 20px 0;
   color: #d9772b;
   font-weight: bold;
+  font-size: 15px;
 }
 
 /* 푸터 */
@@ -100,35 +137,34 @@ body {
   text-align: center;
   font-size: 11px;
   color: #777;
+  margin-top: 30px;
 }
 
 .brand {
   color: #d9772b;
   font-weight: bold;
+  margin-bottom: 5px;
 }
 
 .small {
   margin: 3px 0;
 }
 
-/* 🔴 스위치 ON 상태 */
-.toggle.active {
-  background: #b5483a;
+/* 👤 프로필 (user.html용) */
+.profile {
+  width: 80px;
+  height: 80px;
+  background: #ddd;
+  border-radius: 50%;
+  margin: 20px auto;
 }
 
-.toggle.active::after {
-  left: 20px;
-}
-
-/* 🔥 화면 고정 컨테이너 */
-body {
-  display: flex;
-  justify-content: center;
-}
-
-.container {
-  width: 390px;
-  min-height: 100vh;
-  background: #f3f4f6;
-  padding: 20px;
+/* 👤 정보 박스 */
+.guide-box {
+  background: #eee;
+  padding: 15px;
+  border-radius: 12px;
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.5;
 }

@@ -1,45 +1,61 @@
 body {
-  font-family: sans-serif;
-  text-align: center;
+  font-family: 'Arial', sans-serif;
+  background: #f2f2f2;
   padding: 20px;
-  background: #f8f9fa;
+  text-align: center;
 }
 
-h1 {
-  margin-bottom: 10px;
+/* 카드 */
+.card {
+  background: #d9772b;
+  color: white;
+  padding: 20px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+/* 버튼 공통 */
+.btn-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
 }
 
 .btn {
-  display: block;
-  margin: 10px auto;
+  flex: 1;
   padding: 15px;
-  width: 85%;
-  max-width: 400px;
-  background: #007bff;
+  border-radius: 12px;
   color: white;
   text-decoration: none;
+  font-weight: bold;
+}
+
+/* 버튼 색상 */
+.red { background: #b5483a; }
+.orange { background: #f4a62a; }
+.blue { background: #3b6cc4; }
+
+/* 안내 박스 */
+.guide-box {
+  background: #eee;
+  padding: 15px;
   border-radius: 12px;
-  font-size: 16px;
-}
-
-.secondary {
-  background: #555;
-}
-
-.guide {
   margin-top: 20px;
-  font-size: 14px;
-  color: #333;
 }
 
+/* 정보 버튼 */
+.info-link {
+  display: block;
+  margin-top: 20px;
+  color: #d9772b;
+  font-weight: bold;
+}
+
+/* 실종 배너 */
 #missingBanner {
-  background: red;
+  background: #b5483a;
   color: white;
-  padding: 12px;
-  margin-bottom: 15px;
-  border-radius: 8px;
-}
-
-.hidden {
-  display: none;
+  padding: 10px;
+  border-radius: 20px;
+  margin-bottom: 10px;
 }

@@ -1,4 +1,5 @@
-{
+/* 기본 초기화 */
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -7,50 +8,43 @@
 
 body {
   font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
-  background-color: #e5e5e5;
+  background-color: #e5e5e5; /* PC용 외부 배경색 */
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  overflow: hidden; /* 바디 스크롤 방지 */
+  overflow: hidden; /* 바닥 스크롤 방지 */
 }
 
-/* 2. 앱 컨테이너 */
+/* 📱 앱 컨테이너 (스마트폰 크기 고정) */
 .container {
   width: 100%;
-  max-width: 430px;
-  height: 100vh; /* 전체 높이 */
+  max-width: 430px; /* 아이폰 Pro Max 너비 기준 */
+  height: 100vh;
   background: #f3f4f6;
-  position: relative;
+  padding: 24px;
   display: flex;
   flex-direction: column;
-  overflow-y: auto; /* 내부 콘텐츠 길어질 때만 스크롤 */
-  padding: 20px;
-  
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  overflow-y: auto; /* 내부 콘텐츠만 스크롤 */
+  position: relative;
 }
 
-.container::-webkit-scrollbar {
-  display: none;
-}
-
+/* PC 환경에서만 스마트폰 프레임 적용 */
 @media (min-width: 600px) {
   .container {
-    height: 850px; /* 고정 높이 */
+    height: 850px;
     border-radius: 40px;
-    border: 8px solid #333; /* 베젤 */
+    border: 8px solid #333;
     box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-    margin: 20px;
   }
 }
 
+/* 상단 상태 바 */
 .top-bar {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   margin-bottom: 20px;
-  padding: 5px 0;
 }
 
 .toggle {
@@ -59,7 +53,7 @@ body {
   background: #ccc;
   border-radius: 20px;
   position: relative;
-  transition: background 0.3s;
+  transition: 0.3s;
   cursor: pointer;
   flex-shrink: 0;
 }
@@ -74,138 +68,91 @@ body {
   left: 3px;
   border-radius: 50%;
   transition: 0.3s;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.toggle.active {
-  background: #b5483a;
-}
-
-.toggle.active::after {
-  left: 23px;
-}
+.toggle.active { background: #b5483a; }
+.toggle.active::after { left: 23px; }
 
 #statusText {
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 13px;
   color: #b5483a;
+  font-weight: 600;
 }
 
-/* 4. 메인 알림 카드 */
+.dot { margin-right: 4px; }
+
+/* 메인 카드 */
 .main-card {
   background: #d9772b;
   color: white;
   padding: 30px 20px;
   border-radius: 20px;
   text-align: center;
-  box-shadow: 0 4px 12px rgba(217, 119, 43, 0.2);
-}
-
-.siren {
-  font-size: 28px;
-  margin-bottom: 12px;
-  display: block;
-}
-
-.main-card h2 {
-  font-size: 20px;
-  font-weight: 800;
-  margin-bottom: 8px;
-  letter-spacing: -0.5px;
-}
-
-.main-card p {
-  font-size: 15px;
-  opacity: 0.9;
-}
-
-.desc {
-  text-align: center;
-  margin: 25px 0 15px;
-  color: #555;
-  font-size: 14px;
-}
-
-.btn-group {
-  display: flex;
-  gap: 8px;
   margin-bottom: 20px;
 }
 
+.siren { font-size: 30px; margin-bottom: 10px; display: block; }
+.main-card h2 { font-size: 20px; margin-bottom: 8px; }
+
+/* 버튼 그룹 */
+.desc { text-align: center; font-size: 14px; color: #555; margin-bottom: 15px; }
+
+.btn-group { display: flex; gap: 8px; margin-bottom: 25px; }
+
 .btn {
   flex: 1;
+  height: 75px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  height: 70px;
   border-radius: 12px;
   color: white;
   text-decoration: none;
   font-weight: bold;
   font-size: 14px;
   line-height: 1.3;
-  transition: transform 0.1s;
-}
-
-.btn:active {
-  transform: scale(0.96);
 }
 
 .red { background: #b5483a; }
 .orange { background: #f4a62a; }
 .blue { background: #3b6cc4; }
 
-.speech {
-  background: #ffffff;
+/* 정보 박스 & 말풍선 */
+.speech, .guide-box {
+  background: white;
   padding: 20px;
   border-radius: 15px;
-  margin-top: 10px;
-  border: 1px solid #e0e0e0;
-}
-
-.speech b {
-  display: block;
-  color: #333;
-  margin-bottom: 8px;
-  font-size: 15px;
-}
-
-.speech p {
   font-size: 14px;
-  color: #666;
   line-height: 1.6;
+  border: 1px solid #e0e0e0;
 }
 
 .info-link {
   display: block;
   text-align: center;
-  margin: 30px 0;
+  margin: 25px 0;
   color: #d9772b;
-  text-decoration: underline;
-  text-underline-offset: 4px;
   font-weight: bold;
-  font-size: 16px;
+  text-decoration: none;
 }
 
-/* 7. 푸터 영역 */
+/* 유저 프로필 전용 */
+.profile {
+  width: 100px;
+  height: 100px;
+  background: #ddd;
+  border-radius: 50%;
+  margin: 20px auto;
+}
+
+/* 푸터 */
 .footer {
   text-align: center;
   margin-top: auto;
-  padding: 30px 0 10px;
+  padding-top: 30px;
 }
 
-.brand {
-  color: #d9772b;
-  font-weight: bold;
-  font-size: 13px;
-  margin-bottom: 10px;
-}
-
-.small {
-  font-size: 11px;
-  color: #999;
-  margin: 4px 0;
-  line-height: 1.4;
-}
+.brand { color: #d9772b; font-weight: bold; font-size: 13px; margin-bottom: 8px; }
+.small { font-size: 11px; color: #999; margin-bottom: 4px; }

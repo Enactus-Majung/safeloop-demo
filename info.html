@@ -50,7 +50,7 @@
 
         const urlParams = new URLSearchParams(window.location.search);
         const elderId = urlParams.get('id') || "elder01";
-        document.getElementById('btn-back').onclick = () => location.href = `home.html?id=${elderId}`;
+        document.getElementById('btn-back').onclick = () => location.href = `index.html?id=${elderId}`;
 
         async function loadData() {
             const docRef = doc(db, "elders", elderId);

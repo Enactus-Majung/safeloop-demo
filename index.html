@@ -87,7 +87,7 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
         const urlParams = new URLSearchParams(window.location.search);
-        const elderId = urlParams.get('id') || "elder01";
+        const elderId = urlParams.get('id') || "demo";
 
         const MAIN_TEXT_SIZE = "text-2xl"; 
 
@@ -101,7 +101,7 @@
                         const docRef = doc(db, "elders", elderId);
                         await updateDoc(docRef, {
                             // 사용자의 현재 위치를 GeoPoint로 저장
-                            updatedLoc: new GeoPoint(lat, lng),
+                            updateLoc: new GeoPoint(lat, lng),
                             // 서버 시간 기준으로 업데이트 시간 기록
                             updateTime: new Date()
                         });

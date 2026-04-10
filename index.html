@@ -7,6 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .hidden { display: none !important; }
+        /* 모든 수치 변화를 부드럽게 연결 */
         .transition-all { transition: all 0.4s ease-in-out; }
         #status-main-text { min-height: 3.5rem; }
     </style>
@@ -21,7 +22,7 @@
 
         <div class="p-6 pt-8 flex flex-col items-center flex-1">
             
-            <div id="status-card" class="w-full mb-6 text-center rounded-[2.5rem] p-10 transition-all border-2 border-transparent shadow-sm bg-white">
+            <div id="status-card" class="w-full mb-6 text-center rounded-[2.5rem] p-10 transition-all border-2 border-gray-200 bg-white shadow-sm">
                 <div id="status-emoji" class="text-6xl mb-4 transition-all">🚨</div>
                 
                 <h2 id="status-main-text" class="text-2xl font-black mb-2 leading-tight tracking-tight transition-all text-gray-900">
@@ -55,7 +56,7 @@
                     </p>
                 </div>
 
-                <button id="btn-info" class="w-full bg-white text-orange-500 py-5 rounded-[1.5rem] font-black text-lg border-[2.5px] border-orange-500 shadow-sm mb-6 active:scale-95 transition-all">
+                <button id="btn-info" class="w-full bg-white text-orange-600 py-5 rounded-[1.5rem] font-black text-lg border-[2.5px] border-orange-600 shadow-sm mb-6 active:scale-95 transition-all">
                     어르신 정보 확인하기
                 </button>
             </div>
@@ -107,8 +108,7 @@
 
                 if (isMissing) {
                     headerTitle.className = "text-lg font-bold text-red-600 transition-all";
-                    // [수정] border-2 유지, 배경색과 테두리색만 변경
-                    card.className = "w-full mb-6 text-center rounded-[2.5rem] p-10 transition-all border-2 border-red-200 bg-red-50 shadow-md";
+\                    card.className = "w-full mb-6 text-center rounded-[2.5rem] p-10 transition-all border-2 border-red-200 bg-red-50 shadow-md";
                     emoji.innerText = "🚨";
                     mainText.innerHTML = "실종 신고가 등록된<br>어르신입니다.";
                     mainText.className = `${baseClass} text-red-600`;
@@ -118,8 +118,7 @@
                     locHighlight.className = "text-red-600 font-bold transition-all";
                 } else {
                     headerTitle.className = "text-lg font-bold text-gray-900 transition-all";
-                    // [수정] border-2 유지, border-gray-100으로 연한 테두리 표시 (혹은 border-transparent)
-                    card.className = "w-full mb-6 text-center rounded-[2.5rem] p-10 transition-all border-2 border-gray-100 bg-white shadow-sm";
+                    card.className = "w-full mb-6 text-center rounded-[2.5rem] p-10 transition-all border-2 border-gray-200 bg-white shadow-sm";
                     emoji.innerText = "🚨"; 
                     mainText.innerHTML = "도움이 필요한<br>어르신입니다.";
                     mainText.className = `${baseClass} text-gray-900`;

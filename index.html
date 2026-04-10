@@ -21,9 +21,9 @@
             </button>
         </div>
 
-        <div class="p-6 pt-10 flex flex-col items-center flex-1">
+        <div class="p-6 pt-8 flex flex-col items-center flex-1">
             
-            <div id="status-card" class="w-full mb-4 text-center rounded-[2.5rem] p-10 transition-all border shadow-sm bg-white">
+            <div id="status-card" class="w-full mb-6 text-center rounded-[2.5rem] p-10 transition-all border shadow-sm bg-white">
                 <div id="status-emoji" class="text-6xl mb-4 transition-all">🏠</div>
                 
                 <h2 id="status-main-text" class="text-2xl font-black mb-2 leading-tight tracking-tight transition-all text-gray-900">
@@ -34,8 +34,8 @@
                 </p>
             </div>
 
-            <div class="w-full mt-auto px-1">
-                <div id="call-guide-text" class="flex items-center mb-5 text-[13px] font-bold transition-all text-blue-600">
+            <div class="w-full px-1">
+                <div id="call-guide-text" class="flex items-center mb-4 text-[13px] font-bold transition-all text-blue-600">
                     <span class="mr-2 text-base">📞</span> 아래 버튼을 누르면 바로 전화가 연결됩니다.
                 </div>
                 
@@ -114,23 +114,23 @@
 
                 if (isMissing) {
                     headerTitle.className = "text-lg font-bold text-red-600 transition-all";
-                    card.className = "w-full mb-4 text-center rounded-[2.5rem] p-10 transition-all border-2 border-red-200 bg-red-50 shadow-md";
+                    card.className = "w-full mb-6 text-center rounded-[2.5rem] p-10 transition-all border-2 border-red-200 bg-red-50 shadow-md";
                     emoji.innerText = "🚨";
                     mainText.innerHTML = "현재 실종 신고가<br>등록된 어르신입니다.";
                     mainText.className = "text-2xl font-black mb-2 leading-tight tracking-tight text-red-600 transition-all";
                     subText.innerText = "아래 연락처로 즉시 전화해 주세요.";
                     subText.className = "text-sm font-bold text-red-500 animate-pulse transition-all";
-                    guideText.className = "flex items-center mb-5 text-[13px] font-black text-red-600 transition-all";
+                    guideText.className = "flex items-center mb-4 text-[13px] font-black text-red-600 transition-all";
                     locHighlight.className = "text-red-600 font-bold transition-all";
                 } else {
                     headerTitle.className = "text-lg font-bold text-gray-900 transition-all";
-                    card.className = "w-full mb-4 text-center rounded-[2.5rem] p-10 transition-all border border-gray-200 bg-white shadow-sm";
-                    emoji.innerText = "🏠";
-                    mainText.innerHTML = "마중 안심밴드를 착용한<br>어르신입니다.";
+                    card.className = "w-full mb-6 text-center rounded-[2.5rem] p-10 transition-all border border-gray-200 bg-white shadow-sm";
+                    emoji.innerText = "🚨";
+                    mainText.innerHTML = "도움이 필요한 어르신입니다.";
                     mainText.className = "text-2xl font-black mb-2 leading-tight tracking-tight text-gray-900 transition-all";
                     subText.innerText = "정보 확인이 필요하면 아래 버튼을 눌러주세요.";
                     subText.className = "text-sm font-medium text-gray-500 transition-all";
-                    guideText.className = "flex items-center mb-5 text-[13px] font-bold text-blue-600 transition-all";
+                    guideText.className = "flex items-center mb-4 text-[13px] font-bold text-blue-600 transition-all";
                     locHighlight.className = "text-blue-600 font-bold transition-all";
                 }
                 

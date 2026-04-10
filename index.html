@@ -114,50 +114,50 @@
         }
         trackLocation();
 
-        onSnapshot(doc(db, "Users", elderId), (docSnap) => {
-            if (docSnap.exists()) {
-                const data = docSnap.data();
-                const isMissing = data.isMissing;
-                
-                const headerTitle = document.getElementById('header-title');
-                const card = document.getElementById('status-card');
-                const emoji = document.getElementById('status-emoji');
-                const mainText = document.getElementById('status-main-text');
-                const subText = document.getElementById('status-sub-text');
-                const guideText = document.getElementById('call-guide-text');
-                const locHighlight = document.getElementById('location-highlight');
+onSnapshot(doc(db, "Users", elderId), (docSnap) => { // eldrId 오타 수정 완료
+    if (docSnap.exists()) {
+        const data = docSnap.data();
+        const isMissing = data.isMissing;
+        
+        const headerTitle = document.getElementById('header-title');
+        const card = document.getElementById('status-card');
+        const emoji = document.getElementById('status-emoji');
+        const mainText = document.getElementById('status-main-text');
+        const subText = document.getElementById('status-sub-text');
+        const guideText = document.getElementById('call-guide-text');
+        const locHighlight = document.getElementById('location-highlight');
 
-                const baseClass = `${MAIN_TEXT_SIZE} font-black mb-2 leading-tight tracking-tight transition-all`;
-                emoji.classList.remove('opacity-0');
+        const baseClass = `${MAIN_TEXT_SIZE} font-black mb-2 leading-tight tracking-tight transition-all`;
+        emoji.classList.remove('opacity-0');
 
-                if (isMissing) {
-                    headerTitle.className = "text-lg font-bold text-red-600 transition-all";
-                    card.className = "w-full mb-6 text-center rounded-[2.5rem] p-10 transition-all border-2 border-red-200 bg-red-50 shadow-md";
-                    emoji.innerText = "🚨"; // 실종일 때만 경고등
-                    mainText.innerHTML = "실종 신고가 등록된<br>어르신입니다.";
-                    mainText.className = `${baseClass} text-red-600`;
-                    subText.innerText = "아래 연락처로 즉시 전화해 주세요.";
-                    subText.className = "text-sm font-bold text-red-500 animate-pulse transition-all";
-                    guideText.className = "flex items-center mb-4 text-[14px] font-black text-red-600 transition-all";
-                    locHighlight.className = "text-red-600 font-bold transition-all";
-                } else {
-                    headerTitle.className = "text-lg font-bold text-gray-900 transition-all";
-                    card.className = "w-full mb-6 text-center rounded-[2.5rem] p-10 transition-all border-2 border-gray-200 bg-white shadow-sm";
-                    emoji.innerText = "🚨"; // 정상 상태일 때 따뜻한 집 아이콘
-                    mainText.innerHTML = "도움이 필요한<br>어르신입니다.";
-                    mainText.className = `${baseClass} text-gray-900`;
-                    subText.innerText = "정보 확인이 필요하면 아래 버튼을 눌러주세요.";
-                    subText.className = "text-sm font-medium text-gray-500 transition-all";
-                    guideText.className = "flex items-center mb-4 text-[14px] font-bold text-orange-500 transition-all";
-                    locHighlight.className = "text-orange-600 font-bold transition-all";
-                }
-                
-                // [반영] 스크린샷 필드명 guardian_phone 적용 (기존 gurdian_phone 오타 수정됨)
-                document.getElementById('call-guardian').href = `tel:${data.guardian_phone}`;
-                document.getElementById('btn-info').onclick = () => location.href = `info.html?id=${elderId}`;
-            } else {
-                console.log("데이터를 불러오지 못했습니다. DB 연결을 확인하세요.");
-            }
+        if (isMissing) {
+            headerTitle.className = "text-lg font-bold text-red-600 transition-all";
+            card.className = "w-full mb-6 text-center rounded-[2.5rem] p-10 transition-all border-2 border-red-200 bg-red-50 shadow-md";
+            emoji.innerText = "🚨"; // 실종 시 사이렌 아이콘
+            mainText.innerHTML = "실종 신고가 등록된<br>어르신입니다.";
+            mainText.className = `${baseClass} text-red-600`;
+            subText.innerText = "아래 연락처로 즉시 전화해 주세요.";
+            subText.className = "text-sm font-bold text-red-500 animate-pulse transition-all";
+            guideText.className = "flex items-center mb-4 text-[14px] font-black text-red-600 transition-all";
+            locHighlight.className = "text-red-600 font-bold transition-all";
+        } else {
+            headerTitle.className = "text-lg font-bold text-gray-900 transition-all";
+            card.className = "w-full mb-6 text-center rounded-[2.5rem] p-10 transition-all border-2 border-gray-200 bg-white shadow-sm";
+            emoji.innerText = "🚨";
+            mainText.innerHTML = "도움이 필요한<br>어르신입니다.";
+            mainText.className = `${baseClass} text-gray-900`;
+            subText.innerText = "정보 확인이 필요하면 아래 버튼을 눌러주세요.";
+            subText.className = "text-sm font-medium text-gray-500 transition-all";
+            guideText.className = "flex items-center mb-4 text-[14px] font-bold text-orange-500 transition-all";
+            locHighlight.className = "text-orange-600 font-bold transition-all";
+        }
+        
+        document.getElementById('call-guardian').href = `tel:${data.guardian_phone}`;
+        document.getElementById('btn-info').onclick = () => location.href = `info.html?id=${elderId}`;
+    } else {
+        console.log("데이터를 불러오지 못했습니다. DB 연결을 확인하세요.");
+    }
+});
         });
     </script>
 </body>

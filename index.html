@@ -11,8 +11,8 @@
         #status-main-text { min-height: 3.5rem; }
     </style>
 </head>
-<body class="bg-gray-100 flex justify-center text-gray-800 font-sans">
-    <div class="w-full max-w-md min-h-screen bg-white shadow-lg flex flex-col relative overflow-hidden">
+<body class="bg-slate-200 flex justify-center text-gray-800 font-sans">
+    <div class="w-full max-w-md min-h-screen bg-white shadow-2xl flex flex-col relative overflow-hidden">
         <div class="relative w-full border-b flex justify-between items-center px-6 py-4 bg-white sticky top-0 z-50">
             <h1 id="header-title" class="text-lg font-bold text-gray-900 transition-all">마중안심밴드</h1>
             <button id="btn-admin-login" class="bg-gray-100 px-3 py-1 rounded-lg text-gray-600 text-sm font-bold active:scale-95">보호자 관리</button>
@@ -61,11 +61,9 @@
     </div>
 
     <script type="module">
-    // 1. 필요한 Firebase 함수 임포트 (CDN 방식 유지)
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getFirestore, doc, onSnapshot, updateDoc, GeoPoint } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
     
-    // 2. 보내주신 최신 Firebase 설정값 적용 (safeloop-majung 프로젝트)
     const firebaseConfig = {
         apiKey: "AIzaSyARCEpqFrnnCg6bbDzC7etXK_Ypnyc_1yY",
         authDomain: "safeloop-majung.firebaseapp.com",
@@ -76,28 +74,25 @@
         measurementId: "G-KPX19HQ2JG"
     };
 
-    // Firebase 초기화
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    // 3. URL 파라미터에서 ID를 가져오고, 없으면 기본값 'demo' 사용
+    //URL 파라미터에서 ID를 가져오고, 없으면 기본값 'demo' 사용
     const urlParams = new URLSearchParams(window.location.search);
     const elderId = urlParams.get('id') || "demo"; 
 
-    // 4. 데이터베이스 경로 설정 (Users 컬렉션의 demo 문서)
+    // 데이터베이스 경로 설정 (Users 컬렉션의 demo 문서)
     const docRef = doc(db, "Users", elderId);
 
-    // [버튼 이벤트] 보호자 관리 페이지로 이동 (ID 전달)
     document.getElementById('btn-admin-login').onclick = () => {
         location.href = `login.html?id=${elderId}`;
     };
 
-    // [버튼 이벤트] 어르신 정보 확인 페이지로 이동 (ID 전달)
     document.getElementById('btn-info').onclick = () => {
         location.href = `info.html?id=${elderId}`;
     };
 
-    // 5. 현재 위치 트래킹 및 DB 업데이트
+    // 현재 위치 트래킹
     if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(async (pos) => {
             try {
@@ -111,11 +106,10 @@
         }, null, { enableHighAccuracy: true });
     }
 
-    // 6. 실시간 상태 감시 및 UI 업데이트
     onSnapshot(docRef, (docSnap) => {
         if (docSnap.exists()) {
             const data = docSnap.data();
-            const isMissing = data.isMissing; // DB의 실종 여부 필드
+            const isMissing = data.isMissing;
             const emoji = document.getElementById('status-emoji');
             const mainText = document.getElementById('status-main-text');
             const statusCard = document.getElementById('status-card');
@@ -123,15 +117,27 @@
             emoji.classList.remove('opacity-0');
 
             if (isMissing) {
-                // 실종 상태일 때 UI
+                // 실종 상태일 때
                 emoji.innerText = "🚨";
-                mainText.innerHTML = "실종 신고가 등록된<br>어르신입니다.";
+                mainText.innerHTML = `
+                    <span class="block text-red-600">실종 신고가 등록된</span>
+                    <span class="block text-red-600">어르신입니다.</span>
+                    <p class="text-sm font-medium text-red-400 mt-3">
+                        발견 즉시 아래 버튼을 통해 연락해 주세요.
+                    </p>
+                `;
                 mainText.className = "text-2xl font-black mb-2 leading-tight text-red-600";
                 statusCard.className = "w-full mb-6 text-center rounded-[2.5rem] p-10 transition-all border-2 border-red-500 bg-red-50 shadow-sm";
             } else {
-                // 정상 상태일 때 UI
-                emoji.innerText = "😊";
-                mainText.innerHTML = "마중 안심밴드를 착용한<br>어르신입니다.";
+                // 정상 상태일 때
+                emoji.innerText = "🚨";
+                mainText.innerHTML = `
+                    <span class="block text-gray-900">마중 안심밴드를 착용한</span>
+                    <span class="block text-gray-900">어르신입니다.</span>
+                    <p class="text-sm font-medium text-gray-400 mt-3">
+                        아래 버튼을 통해 어르신의 정보를 확인해 주세요.
+                    </p>
+                `;
                 mainText.className = "text-2xl font-black mb-2 leading-tight text-gray-900";
                 statusCard.className = "w-full mb-6 text-center rounded-[2.5rem] p-10 transition-all border-2 border-gray-200 bg-white shadow-sm";
             }

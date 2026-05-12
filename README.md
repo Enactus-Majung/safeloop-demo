@@ -47,6 +47,7 @@ Majung_Demo/
 ├── test_result            # 보호자용 데이터 관리 페이지
 └── README.md
 ```
+
 ### 🎨 Color Scheme
 
 |#ff6600|#EEEEEE|

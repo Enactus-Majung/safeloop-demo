@@ -54,6 +54,11 @@
                 </button>
             </div>
         </div>
+//수정3
+        <button onclick="uploadDummyUsers()"
+            class="mx-6 mb-6 bg-black text-white py-4 rounded-2xl font-bold">
+            테스트 데이터 200개 생성
+        </button>
 
         <footer class="p-8 bg-white border-t text-center text-gray-400">
             <p class="text-[13px]">Copyright © MAJUNG. All rights reserved.</p>
@@ -62,7 +67,17 @@
 
     <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getFirestore, doc, onSnapshot, updateDoc, GeoPoint } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+    //수정1 import { getFirestore, doc, onSnapshot, updateDoc, GeoPoint } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+    
+    import { 
+        getFirestore, 
+        doc, 
+        onSnapshot, 
+        updateDoc, 
+        GeoPoint,
+        collection,
+        writeBatch
+    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
     
     const firebaseConfig = {
         apiKey: "AIzaSyARCEpqFrnnCg6bbDzC7etXK_Ypnyc_1yY",
@@ -151,6 +166,34 @@
             document.getElementById('status-main-text').innerText = "등록되지 않은 사용자입니다.";
         }
     });
+
+        //수정2
+        async function uploadDummyUsers() {
+    const batch = writeBatch(db);
+
+    for (let i = 0; i < 200; i++) {
+        const docRef = doc(collection(db, "Users"));
+
+        batch.set(docRef, {
+            address: "서울특별시 00구 00동",
+            age: 78,
+            center_loc: "00구 치매안심센터",
+            center_phone: "0212345678",
+            gender: "남",
+            guardian_phone: "01012345678",
+            isMissing: false,
+            lastUpdate: new Date().toLocaleString(),
+            name: "홍길동",
+            pin: "1111",
+            police_loc: "00경찰서"
+        });
+    }
+
+    await batch.commit();
+
+    alert("200개 업로드 완료!");
+}
+        
 </script>
 </body>
 </html>
